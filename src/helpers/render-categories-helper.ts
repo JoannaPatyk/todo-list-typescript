@@ -1,6 +1,27 @@
-import { Category } from "../types/type";
+import { Category } from "../types/types.js";
 
-export const renderCategories = (categories: Category[], categoriesContainerElement: HTMLElement, selectedCategory: Category) => {
+const handleCategoryChange = (category: Category) => {
+    if (category === Category.GENERAL) {
+        console.log("Zmiana na general!");
+    } else if (category === Category.GYM ) {
+        alert("LECISZ NA SILKE");
+    } else if (category === Category.HOBBY ) {
+        document.body.style.background = "red";
+    } else if (category === Category.WORK) {
+        console.log("Zmiana na work!");
+        alert("PRACA POPLACA");
+        document.body.style.background = "green";
+    } else {
+        const never: never = category;
+        console.log(never);
+    }
+};
+
+export const renderCategories = (
+    categories: Category[],
+    categoriesContainerElement: HTMLElement, 
+    inputChangeCallback: (category: Category) => void
+    ) => {
     categories.forEach((category) => {
         const categoryElement: HTMLElement = document.createElement("li");
 
@@ -13,7 +34,8 @@ export const renderCategories = (categories: Category[], categoriesContainerElem
         radioInputElement.value = category;
         radioInputElement.id = id;
         radioInputElement.addEventListener("change", () => {
-            selectedCategory = category;
+            inputChangeCallback(category);
+            handleCategoryChange(category);
         });
 
         const labelElement: HTMLLabelElement = document.createElement("label");
