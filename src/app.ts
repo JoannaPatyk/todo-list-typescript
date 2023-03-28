@@ -1,9 +1,10 @@
 import { Task, Category } from "./types/types.js";
 import renderTasks from './helpers/render-tasks.helper.js'
 import {renderCategories} from './helpers/render-categories-helper.js'
+import { TaskClass } from "./classes/task.js";
 
 const taskNameInputElement: HTMLInputElement = document.querySelector("#name");
-const addButtonElement: HTMLButtonElement = document.querySelector("button");
+const addButtonElement: HTMLButtonElement = document.querySelector(".btn-add");
 const tasksContainerElement: HTMLElement = document.querySelector(".tasks");
 const categoriesContainerElement: HTMLElement = document.querySelector(".categories");
 
@@ -16,23 +17,7 @@ const categories: Category[] = [
 
 let selectedCategory: Category;
 
-const tasks: Task[] = [
-    {
-        name: "Wyrzucić śmieci",
-        done: false,
-        category: Category.HOBBY,
-    },
-    {
-        name: "Pójść na siłkę",
-        done: true,
-        category: Category.GYM,
-    },
-    {
-        name: "Nakarmić koty",
-        done: false,
-        category:  Category.WORK,
-    },
-];
+const tasks: Task[] = [];
 
 const addTask = (task: Task) => {
     tasks.push(task);
@@ -45,13 +30,21 @@ const updateSelectedCategory = (newCategory: Category) => {
 addButtonElement.addEventListener("click", (event: Event) => {
     event.preventDefault();
 
-    addTask({
-        name: taskNameInputElement.value,
-        done: false,
-        category: selectedCategory,
-    });
+    const newTask = new Task(taskNameInputElement.value, false, selectedCategory);
+    if(taskNameInputElement.value === ''){
+        return;
+    } else {  
+        addTask(newTask);
+    }
+
+    newTask.logCreationDate();
+
     renderTasks(tasks,tasksContainerElement);
 });
  
 renderCategories(categories, categoriesContainerElement, updateSelectedCategory);
 renderTasks(tasks,tasksContainerElement);
+
+const taskClassInstance = new TaskClass("Kupić mleko", false);
+
+taskClassInstance.logCreationDate();

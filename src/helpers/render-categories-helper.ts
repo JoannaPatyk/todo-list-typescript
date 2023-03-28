@@ -2,15 +2,17 @@ import { Category } from "../types/types.js";
 
 const handleCategoryChange = (category: Category) => {
     if (category === Category.GENERAL) {
-        console.log("Zmiana na general!");
+        document.body.style.background = "#FD7A5B"
+        document.body.style.backgroundImage = "url(img/flowers.png)";
     } else if (category === Category.GYM ) {
-        alert("LECISZ NA SILKE");
+        document.body.style.background = "#FA669A"
+        document.body.style.backgroundImage = "url(img/flowers.png)";
     } else if (category === Category.HOBBY ) {
-        document.body.style.background = "red";
+        document.body.style.background = "#9C52E3";
+        document.body.style.backgroundImage = "url(img/flowers.png)";
     } else if (category === Category.WORK) {
-        console.log("Zmiana na work!");
-        alert("PRACA POPLACA");
-        document.body.style.background = "green";
+        document.body.style.background = "#5A8EFB";
+        document.body.style.backgroundImage = "url(img/flowers.png)";
     } else {
         const never: never = category;
         console.log(never);

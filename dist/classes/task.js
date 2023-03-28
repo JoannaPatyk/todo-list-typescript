@@ -1,4 +1,4 @@
-export class Task {
+export class TaskClass {
     constructor(name, done, category) {
         this.name = name;
         this.done = done;
@@ -9,10 +9,3 @@ export class Task {
         console.log(`Task został stworzony ${this.createdAt}`);
     }
 }
-export var Category;
-(function (Category) {
-    Category["GENERAL"] = "dom";
-    Category["WORK"] = "praca";
-    Category["GYM"] = "si\u0142ownia";
-    Category["HOBBY"] = "hobby";
-})(Category || (Category = {}));

@@ -6,9 +6,6 @@ const render = (tasks, tasksContainerElement) => {
             taskElement.classList.add(task.category);
         }
         const id = `task-${index}`;
-        const labelElement = document.createElement("label");
-        labelElement.innerText = task.name;
-        labelElement.setAttribute("for", id);
         const checkboxElement = document.createElement("input");
         checkboxElement.type = "checkbox";
         checkboxElement.name = task.name;
@@ -17,9 +14,20 @@ const render = (tasks, tasksContainerElement) => {
         checkboxElement.addEventListener("change", () => {
             task.done = !task.done;
         });
-        taskElement.appendChild(labelElement);
+        const labelElement = document.createElement("label");
+        labelElement.innerText = task.name;
+        labelElement.setAttribute("for", id);
+        const deleteElement = document.createElement("button");
+        deleteElement.textContent = 'X';
+        deleteElement.classList.add('btn-delete');
         taskElement.appendChild(checkboxElement);
+        taskElement.appendChild(labelElement);
+        taskElement.appendChild(deleteElement);
         tasksContainerElement.appendChild(taskElement);
+        deleteElement.addEventListener('click', (event) => {
+            const listItem = event.target.parentNode;
+            listItem.parentNode.removeChild(listItem);
+        });
     });
 };
 export default render;

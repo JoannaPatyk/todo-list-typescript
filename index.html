@@ -9,11 +9,13 @@
   </head>
   <body>
     <form class="container" autocomplete="off">
-      <label for="name">Zadania do wykonania:</label>
+      <div class="logo"><img src="/img/job.png" alt="logo" /></div>
+      <h3>Dodaj nowe zadanie:</h3>
       <input type="text" id="name" />
+      <h3>Wybierz kategorię:</h3>
       <ul class="categories"></ul>
-      <button>dodaj</button>
-      <p>Zadania:</p>
+      <button class="btn-add">dodaj</button>
+      <h3>Zadania:</h3>
       <ul class="tasks"></ul>
     </form>
     <script type="module" src="dist/app.js"></script>

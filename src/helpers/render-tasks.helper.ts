@@ -9,10 +9,6 @@ const render = (tasks: Task[], tasksContainerElement: HTMLElement) => {
         }
         const id: string = `task-${index}`;
 
-        const labelElement: HTMLLabelElement = document.createElement("label");
-        labelElement.innerText = task.name;
-        labelElement.setAttribute("for", id);
-
         const checkboxElement: HTMLInputElement =
             document.createElement("input");
         checkboxElement.type = "checkbox";
@@ -23,10 +19,25 @@ const render = (tasks: Task[], tasksContainerElement: HTMLElement) => {
             task.done = !task.done;
         });
 
-        taskElement.appendChild(labelElement);
-        taskElement.appendChild(checkboxElement);
+        const labelElement: HTMLLabelElement = document.createElement("label");
+        labelElement.innerText = task.name;
+        labelElement.setAttribute("for", id);
 
+        const deleteElement: any =
+            document.createElement("button");
+            deleteElement.textContent = 'X';
+            deleteElement.classList.add('btn-delete');
+
+        taskElement.appendChild(checkboxElement);
+        taskElement.appendChild(labelElement);
+        taskElement.appendChild(deleteElement);
+    
         tasksContainerElement.appendChild(taskElement);
+
+        deleteElement.addEventListener('click', (event) => {
+            const listItem = event.target.parentNode;
+            listItem.parentNode.removeChild(listItem);
+          });
     });
 };
 

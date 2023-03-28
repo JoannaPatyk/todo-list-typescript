@@ -1,4 +1,6 @@
-export class Task {
+import {Category} from '../types/types.js'
+
+export class TaskClass {
     public name: string;
     public done: boolean;
     public category?: Category;
@@ -16,10 +18,3 @@ export class Task {
         console.log(`Task został stworzony ${this.createdAt}`);
     }
 }  
-
-export enum Category {
-    GENERAL = "dom",
-    WORK = "praca",
-    GYM = "siłownia",
-    HOBBY = "hobby",
-}
